@@ -40,7 +40,8 @@ class bills_2(bills):
                 for giro in range(0, self.numbers[index_numbers]):
                     rand = random.randint(1 ,90)
                     self.list_numbers.append(rand)
-                print(" has these numbers " + str(self.list_numbers) + " Type :" + self.type_bill[index_type_bill])
+                print(" has these numbers " + str(self.list_numbers) + " Type :"\
+                    + self.type_bill[index_type_bill])
                 index_numbers += 1
                 index_type_bill += 1
             except IndexError:
@@ -48,4 +49,4 @@ class bills_2(bills):
         
     
 
-    
+
