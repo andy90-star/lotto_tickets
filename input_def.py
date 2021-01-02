@@ -1,6 +1,7 @@
 from bills_games import *
 def input_yes():
     try:
+        list_city = []
         list_numbers = list()
         cost = int(input("Enter the amount you want to play: ")) # sum knowledge
         n_games = int(input("How many tickets do you want to play? min=1, max=10: ")) #numbers of tickets
@@ -24,7 +25,17 @@ def input_yes():
             type_bill = dictio_type_bill.get(select_type_bill)
         numbers = int(input("how many numbers do you want to play, min=1, max=10: "))
 
-        first = bills(cost, n_games, type_bill, select_type_bill, list_numbers, numbers)
+        #while always true until user enter no this is needed
+        #to have the list of the cities needed for the file
+        boolean = True
+        while boolean:
+                city = input("enter the name of the city")
+                list_city.append(city)
+                response = input("do you want to insert another city?").lower()
+                if response == "no":
+                    boolean = False
+                
+        first = bills(cost, n_games, type_bill, list_city, select_type_bill, list_numbers, numbers)
         first.calcolate_yes()
     except ValueError:
         print("I don't understand!, Repeat")
@@ -32,7 +43,9 @@ def input_yes():
 
 
 def input_no():
+    boolean = True
     try:
+        list_city = []
         list_numbers_1 = []
         list_numbers = list()
         cost = int(input("Enter the amount you want to play: ")) # sum knowledge
@@ -40,6 +53,7 @@ def input_no():
         #We use the for because we need to know the type of each card.
         type_bill = list()
         for i in range(0, n_games):
+            boolean = True
             dictio_type_bill = { # dictionary with the type card
             2 : "ambo",
             3 : "terna",
@@ -56,14 +70,18 @@ def input_no():
                 type_bill.append(dictio_type_bill.get(select_type_bill))
             numbers = int(input("How many numbers do you want to play, min=1, max=10: "))
             list_numbers_1.append(numbers)
-
             #if the choice is present in the dictionary 
             #then we take the choice from the dictionary and initialize
             # our variable that will be used for the construction of the object 
-
-        #while always true until user enter no this is needed
-        #to have the list of the cities needed for the file
-        first = bills_2(cost, n_games, type_bill, list_numbers, list_numbers_1)
+            while boolean:
+                    city = input("enter the name of the city")
+                    list_city.append(city)
+                    response = input("do you want to insert another city?").lower()
+                    if response == "no":
+                        boolean = False
+                        #while always true until user enter no this is needed
+                        #to have the list of the cities needed for the file
+        first = bills_2(cost, n_games, type_bill, list_city, list_numbers, list_numbers_1)
         first.calcolate_no()
     except ValueError:
         print("I don't uderstand, Repeat")
